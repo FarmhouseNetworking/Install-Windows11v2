@@ -1,5 +1,5 @@
 <#PSScriptInfo
-.VERSION 1.1
+.VERSION 2.0
 .GUID 1db3a669-88dc-44fd-a9cb-8d029702be66
 .AUTHOR takescake@outlook.com
 .TAGS 
@@ -15,7 +15,7 @@
 <# 
 .DESCRIPTION 
  Downloads the Windows 11 ISO from the any URL hosting it, mounts it to the Windows Operating system, and then attempts to install it will fail if it doesn't meet the strict Windows 11 requirements. 
-.PARAMETER arguments
+.PARAMETER Arguments
  These are the arguments to give to the Windows 11 setup.exe after it is mounted.
  These switches can be found here - https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/windows-setup-command-line-options
  Default: /auto upgrade /DynamicUpdate Disable /quiet
@@ -37,7 +37,7 @@ param(
         [ValidateScript({Test-Path $_ -IsValid})]
         [string]$DownloadPath = "C:\windows\temp\win11.iso",
         [Parameter(Mandatory=$false, HelpMessage="Specify Arguments to run with setup.exe")]
-        [string]$Arguments = "/auto upgrade /DynamicUpdate Disable /quiet"
+        [string]$Arguments = "/auto upgrade /DynamicUpdate Disable /quiet /compat ignorewarning /eula accept /showoobe none /copylogs C:\Windows\Temp\Win11Logfiles.log"
     
 )
 Write-Host "Downloading ISO from $DownloadURL to $DownloadPath"
